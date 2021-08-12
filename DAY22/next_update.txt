@@ -1,0 +1,20 @@
+1.who is winner
+2.add voice to the program
+3.add color to the program with this them:
+
+from random import randint
+
+
+def rgb_color():
+    r = randint(0, 256)
+    g = randint(0, 256)
+    b = randint(0, 256)
+
+    background_r = 256-r
+    background_g = 256-g
+    background_b = 256-b
+
+    background_color = (background_r, background_g, background_b)
+    ball_color = (r, g, b)
+
+    return [ball_color, background_color]
