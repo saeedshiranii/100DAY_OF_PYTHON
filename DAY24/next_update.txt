@@ -1,0 +1,18 @@
+In the future I will create a new snake with white-golden body.
+1. A snake that its color changes whit every level up.
+2. A snake that player inputes the color.
+3. A snake that its part gets color with every level up.
+
+and another interesting update should be foods with:
+1.different shape
+2.different scores
+3.different time of existing
+4.different sounds of eating
+
+
+**and another useful update is pause key
+
+
+I wanna do all of them :)))
+
+
