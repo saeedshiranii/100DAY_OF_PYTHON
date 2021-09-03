@@ -1,18 +1,11 @@
-from turtle import Screen, Turtle
+import pandas
 
+""" read a csv file a convert it to a dictionary at this format {'A': Alpha}"""
+nato = pandas.read_csv('nato_phonetic_alphabet.csv')
+phonetic_dict = {row.letter: row.code for (index, row) in nato.iterrows()}
+print(phonetic_dict)
 
-screen = Screen()
-screen.bgcolor("red")
-tim = Turtle()
-tim.hideturtle()
-tim.penup()
-tim.color("white")
-for i in range(20):
-    tim.clear()
-    answer = screen.textinput(title="user guess...", prompt="who is the murder?")
-    tim.write(arg=answer, move=False, align='center', font=('Arial', 8, 'normal'))
-    keep_going = screen.textinput(title="keep going", prompt="do you wanna continue?")
-    if keep_going.lower() == "no":
-        break
-
-
+""" get a word or letter from user to make it phonetic """
+name = input('enter your name: ').upper()
+final_list = [phonetic_dict[letter] for letter in name]
+print(final_list)
