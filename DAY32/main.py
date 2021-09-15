@@ -1,43 +1,60 @@
-##################### Normal Starting Project ######################
+import datetime as dt
+import pandas as pd
+import smtplib
+import random
 
-# 1. Update the birthdays.csv with your friends & family's details. 
-# HINT: Make sure one of the entries matches today's date for testing purposes. e.g.
-#name,email,year,month,day
-#YourName,your_own@email.com,today_year,today_month,today_day
+# user email and password
+MY_EMAIL = "your email"
+PASSWORD = "your password"
 
-# 2. Check if today matches a birthday in the birthdays.csv
-# HINT 1: Create a tuple from today's month and day using datetime. e.g.
-# today = (today_month, today_day)
+""" create a secure connection and login into the users email"""
+connection = smtplib.SMTP("smtp.gmail.com")
+connection.starttls()
+connection.login(user=MY_EMAIL, password=PASSWORD)
 
-# HINT 2: Use pandas to read the birthdays.csv
-
-# HINT 3: Use dictionary comprehension to create a dictionary from birthday.csv that is formated like this:
-# birthdays_dict = {
-#     (birthday_month, birthday_day): data_row
-# }
-#Dictionary comprehension template for pandas DataFrame looks like this:
-# new_dict = {new_key: new_value for (index, data_row) in data.iterrows()}
-#e.g. if the birthdays.csv looked like this:
-# name,email,year,month,day
-# Angela,angela@email.com,1995,12,24
-#Then the birthdays_dict should look like this:
-# birthdays_dict = {
-#     (12, 24): Angela,angela@email.com,1995,12,24
-# }
-
-#HINT 4: Then you could compare and see if today's month/day tuple matches one of the keys in birthday_dict like this:
-# if (today_month, today_day) in birthdays_dict:
-
-# 3. If there is a match, pick a random letter (letter_1.txt/letter_2.txt/letter_3.txt) from letter_templates and replace the [NAME] with the person's actual name from birthdays.csv
-# HINT 1: Think about the relative file path to open each letter. 
-# HINT 2: Use the random module to get a number between 1-3 to pick a randome letter.
-# HINT 3: Use the replace() method to replace [NAME] with the actual name. https://www.w3schools.com/python/ref_string_replace.asp
-
-# 4. Send the letter generated in step 3 to that person's email address.
-# HINT 1: Gmail(smtp.gmail.com), Yahoo(smtp.mail.yahoo.com), Hotmail(smtp.live.com), Outlook(smtp-mail.outlook.com)
-# HINT 2: Remember to call .starttls()
-# HINT 3: Remember to login to your email service with email/password. Make sure your security setting is set to allow less secure apps.
-# HINT 4: The message should have the Subject: Happy Birthday then after \n\n The Message Body.
+""" check today's date and make a tuple for comprehension"""
+now = dt.datetime.now()
+today_day = now.day
+today_month = now.month
+today_date_tuple = (today_month, today_day)
 
 
+""" read the csv of friends birthday and turn into a dict"""
+birth_day_df = pd.read_csv("birthdays.csv")
+day_column = birth_day_df.day
+list_of_dicts = birth_day_df.to_dict(orient="records")
 
+"""create a tuple with birthday_date and birthday_month for each  friend"""
+for create in list_of_dicts:
+    day_tuple = create["day"]
+    month_tuple = create["month"]
+    final_tuple = (month_tuple, day_tuple)
+    create.update({"birth_date": final_tuple})
+
+""" and finally append all birth_day tuples to empty list"""
+list_of_tuple = []
+for each_list in list_of_dicts:
+    list_of_tuple.append(each_list["birth_date"])
+
+""" check date of birth for each friend """
+for friends_dict in list_of_dicts:
+    if friends_dict['birth_date'] == today_date_tuple:  # if today was her/his birthday
+
+        letter_list = ['letter_1.txt', 'letter_2.txt', 'letter_3.txt']  # choose a random letter
+        chosen_letter = random.choice(letter_list)
+
+        """ open the chosen letter and read it and replace the name of user's friend"""
+        with open(F"letter_templates/{chosen_letter}") as letter:
+            text = letter.read()
+        text = text.replace("[NAME]", friends_dict['name'])
+        with open(chosen_letter, "w") as letter:
+            letter.write(text)
+        with open(chosen_letter, "r") as letter:
+            final_text = letter.read()
+
+        """ and finally send the email for your friend"""
+        friend_email = friends_dict['email']
+        connection.sendmail(from_addr=MY_EMAIL
+                            , to_addrs=friend_email
+                            , msg=F"Subject: Happy Birthday then after \n\n {final_text}"
+                            )
