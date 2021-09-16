@@ -6,8 +6,8 @@ import smtplib
 
 MY_LTN = 32.654629  # User Latitude
 MY_LNG = 51.667984  # User Longitude
-MY_EMAIL = "saeedbypython@gmail.com"  # User Email
-MY_PASS = "alijonkonghermeze"  # User Email Password
+MY_EMAIL = "xxxxx@gmail.com"  # User Email
+MY_PASS = "xxxxx"  # User Email Password
 
 """ Create a connection """
 connection = smtplib.SMTP("smtp.gmail.com")
