@@ -1,13 +1,25 @@
-from requests import get
+from twilio.http.http_client import TwilioHttpClient
+from twilio.rest import Client
 from datetime import datetime
+from requests import get
 from time import sleep
+import os
 
-MY_API = "https://api.openweathermap.org/data/2.5/onecall?" \
-         "lat=32.667461&lon=51.693501&appid=e07f0e58532e56ed1d207642431d7b1b"
+END_POINT = "https://api.openweathermap.org/data/2.5/onecall?"
+api_key = "something"
+account_sid = "something"
+auth_token = "something"
+
+
+params = {
+        "lat": "32.667461",
+        "lon": "51.693501",
+        "appid": api_key
+        }
 
 
 def search_api():
-    get_response = get(url=MY_API)
+    get_response = get(END_POINT, params=params)
     get_response.raise_for_status()
     data = get_response.json()["hourly"]
     return data
@@ -31,8 +43,16 @@ def rain_check():
 
     rainy = [2, 3, 5, 6]  # when it's raining (API documentation)
     for level in rainy:
-        if level in next_14h:
-            print("Hi Dear\n Good morning \n Bring a Umbrella, Rain is possible...")
+        if str(level) in next_14h:
+            client = Client(account_sid, auth_token)
+
+            message = client.messages \
+                .create(
+                body="Hi Dear\n Good morning \n Bring a Umbrella, Rain is possible...",
+                from_="virtual number",
+                to="real number"
+            )
+            print(message.status)
 
 
 ON = True
