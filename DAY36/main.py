@@ -1,3 +1,4 @@
+import newsapi
 import requests
 import os
 
@@ -24,8 +25,8 @@ twe_day_ago_prince = float(stock_prices[1][1]["4. close"])
 
 delta = abs(yesterday_price - twe_day_ago_prince)
 if delta > ((twe_day_ago_prince * 5) / 100):
-    pass
-
+    news = requests.get(url=f"https://newsapi.org/v2/everything?q={COMPANY_NAME}&apiKey={my_key_news}").json()
+    print(news)
 ## STEP 2: https://newsapi.org/
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
