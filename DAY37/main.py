@@ -5,8 +5,8 @@ import requests
 """ first create a account """
 user_endpoint = "https://pixe.la/v1/users"
 
-my_token = "598854876284596957178845865858481852745"
-user_name = "honorsofyou"
+my_token = ""
+user_name = ""
 
 parameter = {
     "token": my_token,
