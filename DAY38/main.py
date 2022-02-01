@@ -5,10 +5,10 @@ import requests
 
 
 
-APP_ID = "465f8448"
-APP_KEYS = "2398f86ba20f9a6c338ba78806d3060b"
+APP_ID = "your app id"
+APP_KEYS = "your app keys"
 NUTRI_API_ENDPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
-SHEET_ENDPOINT = "https://api.sheety.co/48f940685b4d46591451697f484b9079/myworkout/sheet1"
+SHEET_ENDPOINT = "https://api.sheety.co//myworkout/sheet1"
 user_answer = input("how many exercise you did to day?")
 
 
@@ -48,7 +48,7 @@ for exercise in user_result["exercises"]:
 
 sheet_header = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer lkjhgfdssdfghjkiuytrertyuiiuytre748596",
+    "Authorization": "Bearer ",
 }
 
 sheet_respuance = requests.post(url=SHEET_ENDPOINT, json= workouts, headers=sheet_header)
