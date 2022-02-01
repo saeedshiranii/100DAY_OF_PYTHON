@@ -46,6 +46,6 @@ if delta > ((twe_day_ago_prince * 5) / 100):
     for new in news[:3:]:
         message = client.messages.create(
             body=new["url"],
-            from_='+19149966113',
+            from_='phone number',
             to=my_number)
         print(message.sid)
