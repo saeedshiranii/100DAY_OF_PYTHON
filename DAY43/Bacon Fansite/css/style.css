@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(63, 42, 42);
+    }
+
+img:hover { 
+    background-color: rgb(243, 243, 63);
+}
+
+
+h1 {
+    
+    font-size: 100px;
+    color: rgb(226, 136, 34);
+}
+
+p {
+    font-size: 30px;
+    color: rgb(230, 49, 73);
+}
+
+/* Usin Classes*/
+.bacon {
+    background-color: green;
+}
+
