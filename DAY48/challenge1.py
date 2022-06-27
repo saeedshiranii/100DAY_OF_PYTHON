@@ -1,3 +1,5 @@
+# use selenium to go at the python.org and get information of a menu
+
 from selenium import webdriver
 
 
