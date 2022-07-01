@@ -1,19 +1,36 @@
-from data import question_data
 from question_model import Question
-#from quiz_brain import QuizBrain
+from data import question_data
+from quiz_brain import Quiz
 
-class QuestionList:
-    def __init__(self, text, answer):
-        self.text = text
-        self.answer = answer
+question_bank = []
 
+for item in question_data:
 
-q_bank = []
-for data in question_data:
-    data_text = data["text"]
-    data_answer = data["answer"]
-    question = QuestionList(data_text, data_answer)
-    q_bank.append(question)
+    q = Question(text = item["text"], answer = item["answer"])
+    question_bank.append(q)
+    del q
 
 
+
+quiz = Quiz(question_list = question_bank)
+for i in range(len(question_bank)):
+
+    user_answer = quiz.ask()
+
+    if user_answer == "Break":
+        break
+
+    else:
+        correct_answer =  question_bank[i].answer
+
+        print(user_answer)
+        print(correct_answer)
+
+        a = quiz.answer(user_answer = user_answer, correct_answer = correct_answer)
+
+
+        print(f"Right answers : {a} / {len(question_bank)}")
+
+
+            
 
