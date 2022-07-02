@@ -11,8 +11,8 @@ PROMISED_DOWN = 200
 PROMISED_UP = 50
 
 # email and pass of bot twitter account
-TWITTER_EMAIL = "kiramtoinmamlekat2@gmail.com"
-TWITTER_PASSWORD = "kirtotwitter"
+TWITTER_EMAIL = "@gmail.com"
+TWITTER_PASSWORD = ""
 
 
 # a class for create several web driver in separate pages
@@ -58,7 +58,7 @@ class InternetSpeedTwitterBot:
         try:
             time.sleep(30)
             usrbox = self.driver.find_element(by=By.XPATH, value='//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/input')   
-            usrbox.send_keys("internettestbot")        
+            usrbox.send_keys("YOUR USERNAME")        
             usrbox.send_keys(Keys.ENTER)    
 
         except:
