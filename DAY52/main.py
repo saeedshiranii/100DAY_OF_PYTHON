@@ -6,8 +6,8 @@ import time
 
 INSTA_ENDPOINT = "https://www.instagram.com/accounts/login/" # login address at instagram website
 TARGET_ACCOUNT = "benstogram"  # A moterfucker well known chef
-INSTA_EMAIL = "miss_toilet"
-INSTA_PASS = "hithisismiss"
+INSTA_EMAIL = ""
+INSTA_PASS = ""
 
 
 
