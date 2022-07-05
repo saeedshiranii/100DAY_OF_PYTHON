@@ -6,8 +6,8 @@ import time
 
 INSTA_ENDPOINT = "https://www.instagram.com/accounts/login/" # login address at instagram website
 TARGET_ACCOUNT = "benstogram"  # A moterfucker well known chef
-INSTA_EMAIL = ""
-INSTA_PASS = ""
+INSTA_EMAIL = "miss_toilet"
+INSTA_PASS = "hithisismiss"
 
 
 
@@ -56,18 +56,22 @@ class InstagramFollower():
 
 
     def follower(self):
-        all_buttons = self.browser.find_elements(by=By.XPATH, value="//button[@type= 'button']")
-        for button in all_buttons:
+        all_follow_bottuns = self.browser.find_elements(by=By.CSS_SELECTOR, value= "li button")
+        time.sleep(5)
+        print(9)
+        for item in all_follow_bottuns:
             try:
-                button.click()
-                time.sleep(1)
-            except ElementClickInterceptedException:
-               # cancel_button = self.browser.find_element(by=By.CLASS_NAME, value='_aacl _aaco _aacw _aad6 _aade"')
-                #cancel_button.click()  
-                pass                             
 
-    
-w = InstagramFollower()
-w.login()
-w.target_finder()
-w.follower()
+                item.click()
+                time.sleep(2)
+            except ElementClickInterceptedException:
+                
+                break
+            
+
+
+
+bot = InstagramFollower()
+bot.login()
+bot.target_finder()
+bot.follower()
