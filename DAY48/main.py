@@ -4,7 +4,7 @@ import time
 
 
 
-# create a webdriver 
+# create a webdriver
 driver = webdriver.Chrome()
 driver.get("http://orteil.dashnet.org/experiments/cookie/")
 
@@ -13,14 +13,14 @@ driver.get("http://orteil.dashnet.org/experiments/cookie/")
 BIG_COOKIE = driver.find_element_by_id("cookie")
 id_list = ["buyElder Pledge", "buyTime machine", "buyPortal", "buyAlchemy lab", "buyShipment", "buyMine", "buyFactory", "buyGrandma", "buyCursor"]
 
-# create a buffer time 
+# create a buffer time
 one_min = time.time() + 5
 total_time = 0
 
 
 # click on cookie and stuff of store
 while total_time < 300:
-    
+
     BIG_COOKIE.click()
 
 
@@ -32,7 +32,7 @@ while total_time < 300:
                 i = driver.find_element_by_id(item)
                 i.click()
 
-            except: 
+            except:
                 continue
 
         one_min = time.time() + 5
