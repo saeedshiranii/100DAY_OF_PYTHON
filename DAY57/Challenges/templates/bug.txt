@@ -1,2 +1,3 @@
 1. jinja dose not return data in blog.html
 2. for loop in blog.html run 2 times when our json have just one item
+3. 
