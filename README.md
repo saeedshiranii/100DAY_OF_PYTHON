@@ -1,4 +1,4 @@
-# 100DAY OF PYTHON
+# 100 Days of Python
 
 
 ## This Course is all about Python
